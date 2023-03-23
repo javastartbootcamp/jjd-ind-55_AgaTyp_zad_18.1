@@ -8,18 +8,14 @@ public class Euler2 {
 
         FibonacciSequence fibonacci = new FibonacciSequence(elementsNo);
 
-//        System.out.println(fibonacci);
-//        System.out.println(fibonacci.getFibonacci().get(40-1));
-
         int sumOfEvenElements = sumUpEvenElementsWithLimit(fibonacci, biggestElement);
         System.out.println(sumOfEvenElements);
     }
 
     static int sumUpEvenElementsWithLimit(FibonacciSequence fibonacci, int biggestElement) {
-        int fibonacciLastIndex = fibonacci.getElementsNo()-1;
+        int fibonacciLastIndex = fibonacci.getElementsNo() - 1;
         if (fibonacci.getFibonacci().get(fibonacciLastIndex) < biggestElement) {
-//            System.err.println("Zbyt krótka lista.");
-            System.out.println("Zbyt krótka lista.");;
+            System.err.println("Zbyt krótka lista.");
             return 0;
         } else {
             return fibonacci.getFibonacci()

@@ -5,33 +5,33 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pl.javastart.euler2.Euler2.sumUpEvenElementsWithLimit;
 
-import org.junit.jupiter.api.Assertions;
+import java.io.ByteArrayOutputStream;
+import java.util.Optional;
+
+//import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
-//import org.assertj.core.api.Assertions;
+import org.assertj.core.api.Assertions;
 
 
 public class Euler2Test {
-//	private Euler2 euler2 = new Euler2();
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
 	@Test
 	public void shouldReturnError() {
 		//given
 		int elementsNo = 10;
 		int biggestElement = 1000;
-		Euler2 euler2 = new Euler2();
 
 		//when
 		FibonacciSequence fibonacci = new FibonacciSequence(elementsNo);
 		int sumOfEvenElements = sumUpEvenElementsWithLimit(fibonacci, biggestElement);
 
 		//then
-		Assertions.assertEquals(0, sumOfEvenElements);
-//		assertThat(outContent.toString()).contains("Zbyt krótka lista.");
-//		assertAll(
-//				() -> assertEquals(0, sumOfEvenElements),
-////				() -> Assertions.
-//		);
-//		Assertions.
+		SoftAssertions softAssertions = new SoftAssertions();
+		softAssertions.assertThat(sumOfEvenElements).isEqualTo(0);
+		softAssertions.assertThat(outContent.toString()).contains("Zbyt krótka lista.");
+
 	}
 
 	@Test
@@ -39,45 +39,33 @@ public class Euler2Test {
 		//given
 		int elementsNo = 10;
 		int biggestElement = 34;
-		Euler2 euler2 = new Euler2();
 
 		//when
 		FibonacciSequence fibonacci = new FibonacciSequence(elementsNo);
 		int sumOfEvenElements = sumUpEvenElementsWithLimit(fibonacci, biggestElement);
 
 		//then
-		Assertions.assertEquals(44, sumOfEvenElements);
-		//		assertThat(outContent.toString()).contains("Zbyt krótka lista.");
-		//		assertAll(
-		//				() -> assertEquals(0, sumOfEvenElements),
-		////				() -> Assertions.
-		//		);
-		//		Assertions.
+		Assertions.assertThat(sumOfEvenElements).isEqualTo(44);
+
 	}
 
 	@Test
-	public void shouldReturnFibonacciNo() {
+	public void shouldReturnCorrectFibonacciNo() {
 		//given
-		int elementsNo = 100;
-		int offset = 2;
-		int biggestElement = 34;
+		int elementsNo = 40;
+		int offset = 1;
 		double goldenRatio = 1.6180339887;
-		Euler2 euler2 = new Euler2();
-
 
 		//when
 		FibonacciSequence fibonacci = new FibonacciSequence(elementsNo);
 		int fibonacciLastIndex = fibonacci.getElementsNo()-1;
-		int fibonacciPrevLastIndex = fibonacci.getElementsNo()-2;
-		int sumOfEvenElements = sumUpEvenElementsWithLimit(fibonacci, biggestElement);
+		int fibonacciLastElement = fibonacci.getFibonacci().get(fibonacciLastIndex);
+
+		int lastElement = (int) Math.round((Math.pow(goldenRatio, (elementsNo + offset)) - Math.pow(1 - goldenRatio, (elementsNo + offset)))
+								/ Math.sqrt(5));
 
 		//then
-//		Assertions.assertEquals(44, sumOfEvenElements);
-		//		assertThat(outContent.toString()).contains("Zbyt krótka lista.");
-		//		assertAll(
-		//				() -> assertEquals(0, sumOfEvenElements),
-		////				() -> Assertions.
-		//		);
-		//		Assertions.
+		Assertions.assertThat(fibonacciLastElement).isEqualTo(lastElement);
+
 	}
 }
