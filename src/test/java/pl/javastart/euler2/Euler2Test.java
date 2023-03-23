@@ -52,7 +52,7 @@ public class Euler2Test {
 
         //when
         FibonacciSequence fibonacci = new FibonacciSequence(elementsNo);
-        int fibonacciLastIndex = fibonacci.getElementsNo()-1;
+        int fibonacciLastIndex = fibonacci.getElementsNo() - 1;
         int fibonacciLastElement = fibonacci.getFibonacci().get(fibonacciLastIndex);
 
         int lastElement = (int) Math.round((Math.pow(goldenRatio, (elementsNo + offset)) - Math.pow(1 - goldenRatio, (elementsNo + offset)))
