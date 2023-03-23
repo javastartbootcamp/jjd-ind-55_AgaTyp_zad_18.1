@@ -12,31 +12,25 @@ public class Euler2Test {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Test
-    public void shouldReturnError() {
+    public void shouldReturn10() {
         //given
-        int elementsNo = 10;
-        int biggestElement = 1000;
+        int biggestElement = 10;
 
         //when
-        FibonacciSequence fibonacci = new FibonacciSequence(elementsNo);
-        int sumOfEvenElements = sumUpEvenElementsWithLimit(fibonacci, biggestElement);
+        int sumOfEvenElements = sumUpEvenElementsWithLimit(biggestElement);
 
         //then
-        SoftAssertions softAssertions = new SoftAssertions();
-        softAssertions.assertThat(sumOfEvenElements).isEqualTo(0);
-        softAssertions.assertThat(outContent.toString()).contains("Zbyt krótka lista.");
+        Assertions.assertThat(sumOfEvenElements).isEqualTo(10);
 
     }
 
     @Test
     public void shouldReturn44() {
         //given
-        int elementsNo = 10;
         int biggestElement = 34;
 
         //when
-        FibonacciSequence fibonacci = new FibonacciSequence(elementsNo);
-        int sumOfEvenElements = sumUpEvenElementsWithLimit(fibonacci, biggestElement);
+        int sumOfEvenElements = sumUpEvenElementsWithLimit(biggestElement);
 
         //then
         Assertions.assertThat(sumOfEvenElements).isEqualTo(44);
@@ -44,22 +38,15 @@ public class Euler2Test {
     }
 
     @Test
-    public void shouldReturnCorrectFibonacciNo() {
+    public void shouldReturn188() {
         //given
-        int elementsNo = 40;
-        int offset = 1;
-        double goldenRatio = 1.6180339887;
+        int biggestElement = 144;
 
         //when
-        FibonacciSequence fibonacci = new FibonacciSequence(elementsNo);
-        int fibonacciLastIndex = fibonacci.getElementsNo() - 1;
-        int fibonacciLastElement = fibonacci.getFibonacci().get(fibonacciLastIndex);
-
-        int lastElement = (int) Math.round((Math.pow(goldenRatio, (elementsNo + offset)) - Math.pow(1 - goldenRatio, (elementsNo + offset)))
-                / Math.sqrt(5));
+        int sumOfEvenElements = sumUpEvenElementsWithLimit(biggestElement);
 
         //then
-        Assertions.assertThat(fibonacciLastElement).isEqualTo(lastElement);
+        Assertions.assertThat(sumOfEvenElements).isEqualTo(188);
 
     }
 }
